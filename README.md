@@ -4,7 +4,7 @@ similar to: https://github.com/erlerobot/ros_erle_takeoff_land
 
 Demonstrates how mavros can be used to set waypoint and how to execute them. 
 IMHO there is no full demo code that covers a mission, that's why this repo was created.
-This was tested with JMAVSim.
+This was tested with JMAVSim + PX4 + QGroundControl + ROS kinetic.
 After installation of JMAVSim the there should be a folder `~/src/Firmware`. Go to that direction and type:
 
 ```

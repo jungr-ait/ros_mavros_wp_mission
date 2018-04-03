@@ -36,7 +36,7 @@ int main(int argc, char **argv)
 
   int rate_hz = 10;
 
-  ros::init(argc, argv, "mavros_takeoff");
+  ros::init(argc, argv, "global_pos_mission");
   ros::NodeHandle n;
   ros::NodeHandle& nh = n;
   ros::Rate rate(rate_hz);

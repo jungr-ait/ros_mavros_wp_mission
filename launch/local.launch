@@ -1,0 +1,10 @@
+<!-- ROS launch file -->
+<launch>
+    <arg name="node_name"       default="local_mission" />
+    <arg name="launch_prefix"   default="xterm -hold -geometry 105x19 -e" />
+
+    <!-- the node -->
+    <node name="$(arg node_name)" pkg="ros_mavros_wp_mission" type="local_pos_mission" output="screen">
+        <!-- remapping -->
+    </node>
+</launch>
