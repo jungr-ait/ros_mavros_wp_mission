@@ -62,19 +62,33 @@ int main(int argc, char **argv)
 
 
 
-  geometry_msgs::PoseStamped pose;
-  pose.pose.position.x = 0;
-  pose.pose.position.y = 0;
-  pose.pose.position.z = 1;
+  geometry_msgs::PoseStamped pose1;
+  pose1.pose.position.x = 0;
+  pose1.pose.position.y = 0;
+  pose1.pose.position.z = 1;
 
-  //send a few setpoints before starting
-  for(int i = 100; ros::ok() && i > 0; --i)
-  {
-    local_pos_pub.publish(pose);
-    ros::spinOnce();
-    rate.sleep();
-  }
-  ROS_INFO("point set");
+  geometry_msgs::PoseStamped pose2;
+  pose2.pose.position.x = 0;
+  pose2.pose.position.y = 0;
+  pose2.pose.position.z = 1;
+
+  geometry_msgs::PoseStamped pose3;
+  pose3.pose.position.x = 0;
+  pose3.pose.position.y = 0;
+  pose3.pose.position.z = 0.06;
+
+  geometry_msgs::PoseStamped pose4;
+  pose4.pose.position.x = 0;
+  pose4.pose.position.y = 0;
+  pose4.pose.position.z = 1;
+  ////send a few setpoints before starting
+  //for(int i = 100; ros::ok() && i > 0; --i)
+  //{
+  //  local_pos_pub.publish(pose);
+  //  ros::spinOnce();
+  //  rate.sleep();
+  //}
+  //ROS_INFO("point set");
 
   mavros_msgs::SetMode set_mode_msg;
   set_mode_msg.request.custom_mode = "OFFBOARD";
@@ -88,7 +102,8 @@ int main(int argc, char **argv)
 
   bool request_send = false;
   int cnt = 0;
-  while(cnt < rate_Hz*4)
+  int total = rate_Hz*40;
+  while(cnt < total)
   {
     ros::spinOnce();
     request_send = false;
@@ -121,7 +136,15 @@ int main(int argc, char **argv)
     }
 
 
-    local_pos_pub.publish(pose);
+    if(cnt<total/4) {
+        local_pos_pub.publish(pose1);
+    }else if(cnt<total*2/4) {
+        local_pos_pub.publish(pose2);
+    }else if(cnt<total*3/4) {
+        local_pos_pub.publish(pose3);
+    }else {
+        local_pos_pub.publish(pose4);
+    }
     ROS_INFO("point published");
 
 
